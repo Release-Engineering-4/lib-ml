@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "lib-ml-group4"
+version = "0.1.0"
+description = "Pre-processing library for ML models"
+authors = ["Razvan Mihai Popescu <R.Popescu-3@student.tudelft.nl>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+numpy = "^1.26.4"
+keras = "^2.8"
+tensorflow = "2.8.0"
+scikit-learn = "^1.4.2"
+tensorflow-io-gcs-filesystem = "0.24.0"
+protobuf = "^3.20"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.0.0"
+pylint = "^3.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

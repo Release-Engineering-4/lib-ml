@@ -1,7 +1,7 @@
 import pickle
 from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
-from keras.utils import pad_sequences
+from keras.preprocessing.sequence import pad_sequences
 
 OUTPUT_DIR = "google_drive_directory_path"
 
