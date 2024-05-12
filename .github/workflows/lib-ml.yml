@@ -3,7 +3,9 @@ name: Lib-ML
 on:
   push:
     branches:
-    - preprocessing_lib
+    - preprocessing_lib 
+    tags:
+    - 'v*' 
 
 jobs:
   publish:
