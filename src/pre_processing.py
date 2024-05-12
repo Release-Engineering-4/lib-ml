@@ -21,8 +21,8 @@ class MLPreprocessor:
         if tok_path:
             self.tokenizer = MLPreprocessor.load_pkl_data(tok_path)
         else:
-            self.tokenizer = Tokenizer(lower=True, 
-                                       char_level=True, 
+            self.tokenizer = Tokenizer(lower=True,
+                                       char_level=True,
                                        oov_token="-n-")
         if enc_path:
             self.encoder = MLPreprocessor.load_pkl_data(enc_path)
@@ -45,7 +45,7 @@ class MLPreprocessor:
         Tokenize and pad data sequences
         """
         return pad_sequences(
-            self.tokenizer.texts_to_sequences(data), 
+            self.tokenizer.texts_to_sequences(data),
             maxlen=self.sequence_length
         )
 
