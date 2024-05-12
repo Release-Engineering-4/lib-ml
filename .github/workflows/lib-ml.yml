@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - preprocessing_lib
-  pull_request:
-    branches:
-      - main
+    tags:
+      - 'v*' 
 
 jobs:
   lint:
@@ -15,12 +14,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.10.11
+          python-version: '3.x'
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -33,3 +32,17 @@ jobs:
 
       - name: Lint with flake8
         run: poetry run flake8 .
+
+      - name: Bump tag version
+        run: bump2version --no-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GTH_TOKEN }}
+
+      - name: Build lib
+        run: python src/pre_processing.py sdist bdist_wheel
+      
+      - name: Publish lib 
+        run: twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
