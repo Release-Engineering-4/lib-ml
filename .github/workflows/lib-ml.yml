@@ -3,7 +3,7 @@ name: Lib-ML
 on:
   push:
     branches:
-      - main
+      - preprocessing_lib
   pull_request:
     branches:
       - main
