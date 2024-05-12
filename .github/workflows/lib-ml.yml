@@ -15,12 +15,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.10.11
+          python-version: '3.x'
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -35,7 +35,7 @@ jobs:
         run: poetry run flake8 .
 
       - name: Build lib
-        run: python src/pre_processing.py sdist bdist_wheel
+        run: poetry build 
       
       - name: Publish lib 
         run: twine upload dist/*
