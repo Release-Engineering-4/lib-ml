@@ -16,6 +16,7 @@ tensorflow-io-gcs-filesystem = "0.24.0"
 protobuf = "^3.20"
 gdown = "^5.2.0"
 bump2version = "^1.0.1"
+twine = "^5.0.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.0.0"

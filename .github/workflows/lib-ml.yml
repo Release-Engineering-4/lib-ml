@@ -3,13 +3,12 @@ name: Lib-ML
 on:
   push:
     branches:
-      - preprocessing_lib
-    tags:
-      - 'v*' 
+    - preprocessing_lib
 
 jobs:
-  lint:
-    name: Lint with pylint and flake8
+  publish:
+    if: startsWith(github.event.ref, 'refs/tags/v')
+    name: Lint with pylint & flake8 and publish library 
     runs-on: ubuntu-latest
 
     steps:
@@ -32,11 +31,6 @@ jobs:
 
       - name: Lint with flake8
         run: poetry run flake8 .
-
-      - name: Bump tag version
-        run: bump2version --no-tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GTH_TOKEN }}
 
       - name: Build lib
         run: python src/pre_processing.py sdist bdist_wheel
