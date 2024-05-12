@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lib-ml-group4"
+name = "src"
 version = "0.1.0"
 description = "Pre-processing library for ML models"
 authors = ["Razvan Mihai Popescu <R.Popescu-3@student.tudelft.nl>"]
