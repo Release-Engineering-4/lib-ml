@@ -1,7 +1,7 @@
 # pylint: disable=E0401,R0914
 
 """
-Data preprocessing for ML model 
+Data preprocessing for ML model
 """
 
 import pickle
@@ -16,14 +16,16 @@ class MLPreprocessor:
     """
     Class for preprocessing data for ML model
     """
-    def __init__(self, sequence_length=200, tokenizer_path=None, encoder_path=None):
-        self.sequence_length = sequence_length
-        if tokenizer_path:
-            self.tokenizer = MLPreprocessor.load_pkl_data(tokenizer_path)
+    def __init__(self, seq_len=200, tok_path=None, enc_path=None):
+        self.sequence_length = seq_len
+        if tok_path:
+            self.tokenizer = MLPreprocessor.load_pkl_data(tok_path)
         else:
-            self.tokenizer = Tokenizer(lower=True, char_level=True, oov_token="-n-")
-        if encoder_path:
-            self.encoder = MLPreprocessor.load_pkl_data(encoder_path)
+            self.tokenizer = Tokenizer(lower=True, 
+                                       char_level=True, 
+                                       oov_token="-n-")
+        if enc_path:
+            self.encoder = MLPreprocessor.load_pkl_data(enc_path)
         else:
             self.encoder = LabelEncoder()
 
@@ -43,7 +45,8 @@ class MLPreprocessor:
         Tokenize and pad data sequences
         """
         return pad_sequences(
-            self.tokenizer.texts_to_sequences(data), maxlen=self.sequence_length
+            self.tokenizer.texts_to_sequences(data), 
+            maxlen=self.sequence_length
         )
 
     def tokenize_pad_encode_data(self, train_data, validation_data, test_data):
