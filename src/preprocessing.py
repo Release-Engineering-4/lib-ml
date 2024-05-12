@@ -1,3 +1,9 @@
+# pylint: disable=E0401,R0914
+
+"""
+Data preprocessing for ML model 
+"""
+
 import pickle
 from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
@@ -5,12 +11,17 @@ from keras.preprocessing.sequence import pad_sequences
 
 OUTPUT_DIR = "google_drive_directory_path"
 
-def save_data(obj, path):
+def save_data(data, path):
+    """
+    Save data to given path into pickle format
+    """
     with open(path, "wb") as f:
-        pickle.dump(obj, f)
+        pickle.dump(data, f)
 
 def tokenize_sequences(train_data, validation_data, test_data, sequence_length):
-
+    """
+    Tokenize data, pad sequences, and fit encoder  
+    """
     training_df = train_data[["label", "url"]]
     validation_df = validation_data[["label", "url"]]
     testing_df = test_data[["label", "url"]]
