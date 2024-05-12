@@ -4,8 +4,8 @@
 Data preprocessing for ML model 
 """
 
-import gdown
 import pickle
+import gdown
 import pandas as pd
 from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
@@ -13,6 +13,9 @@ from keras.preprocessing.sequence import pad_sequences
 
 
 class MLPreprocessor:
+    """
+    Class for preprocessing data for ML model
+    """
     def __init__(self, sequence_length=200, tokenizer_path=None, encoder_path=None):
         self.sequence_length = sequence_length
         if tokenizer_path:
@@ -95,7 +98,7 @@ class MLPreprocessor:
         """
         Save data to given path into pickle format
         """
-        with open(path, "wb") as f:
+        with open(path, "wb", encoding="utf-8") as f:
             pickle.dump(data, f)
 
     @staticmethod
@@ -110,7 +113,7 @@ class MLPreprocessor:
         """
         Load pickle data from given path
         """
-        with open(path, "rb") as file:
+        with open(path, "rb", encoding="utf-8") as file:
             return pickle.load(file)
 
     @staticmethod
@@ -126,6 +129,6 @@ class MLPreprocessor:
         """
         Load txt data from given path
         """
-        with open(path, "r") as file:
+        with open(path, "r", encoding="utf-8") as file:
             data = file.read()
         return data
