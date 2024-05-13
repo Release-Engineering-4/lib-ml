@@ -1,13 +1,12 @@
 name: Lib-ML
 
 on:
-  pull_request:
-    branches:
-    - main
+  push:
+    tags:
+    - 'v*'
  
 jobs:
   publish:
-    if: contains(github.event.pull_request.head.ref, 'refs/tags/v')
     name: Lint with pylint & flake8 and publish library 
     runs-on: ubuntu-latest
 
