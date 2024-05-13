@@ -1,0 +1,44 @@
+name: Lib-ML
+
+on:
+  push:
+    tags:
+    - 'v*'
+ 
+jobs:
+  publish:
+    name: Lint with pylint & flake8 and publish library 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Lint with pylint
+        run: poetry run pylint $(git ls-files '*.py')
+
+      - name: Lint with flake8
+        run: poetry run flake8 .
+
+      - name: Update lib version
+        run: bash update_version.sh  
+
+      - name: Build lib
+        run: poetry build 
+      
+      - name: Publish lib 
+        run: poetry run twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: pypi-${{secrets.PYPI_TOKEN}}
