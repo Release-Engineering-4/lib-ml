@@ -1,6 +1,6 @@
 # lib-ml
 
-This Python library is tailored for preprocessing text data in machine learning. It provides functions for tokenizing data, padding sequences, and encoding labels, all essential for training ML models. Additionally, it enables data downloading from Google Drive and facilitates storing and loading data in various formats from disk. The library is accessible on PyPI and can be seamlessly integrated into your projects.
+This Python library is designed for preprocessing text data in machine learning. It provides functions for tokenizing data, padding sequences, and encoding labels, all essential for training ML models. Additionally, it enables data downloading from Google Drive and facilitates storing and loading data in various formats from disk. The library is accessible on PyPI and can be seamlessly integrated into your projects.
 
 ## Features
 
@@ -23,7 +23,7 @@ pip install remla-preprocessing
 Example of how to use `lib-ml` for text processing: 
 
 ```python
-from remla_preprocessing import MLPreprocessor
+from remla_preprocessing.pre_processing import MLPreprocessor
 
 # Instantiate the MLPreprocessor class
 preprocessor = MLPreprocessor()
