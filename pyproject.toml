@@ -27,4 +27,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pylint]
-disable = [E0401, R0914]
+disable = ["E0401", "R0914"]
