@@ -23,7 +23,7 @@ pip install remla-preprocess
 Example of how to use `lib-ml` for text processing: 
 
 ```python
-from remla_preprocessing.pre_processing import MLPreprocessor
+from remla_preprocess.pre_processing import MLPreprocessor
 
 # Instantiate the MLPreprocessor class
 preprocessor = MLPreprocessor()
