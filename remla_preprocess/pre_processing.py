@@ -1,9 +1,8 @@
-# pylint: disable=E0401,R0914
-
 """
 Data preprocessing for ML model
 """
 
+import json
 import pickle
 import gdown
 import pandas as pd
@@ -19,13 +18,13 @@ class MLPreprocessor:
     def __init__(self, seq_len=200, tok_path=None, enc_path=None):
         self.sequence_length = seq_len
         if tok_path:
-            self.tokenizer = MLPreprocessor.load_pkl_data(tok_path)
+            self.tokenizer = MLPreprocessor.load_pkl(tok_path)
         else:
             self.tokenizer = Tokenizer(lower=True,
                                        char_level=True,
                                        oov_token="-n-")
         if enc_path:
-            self.encoder = MLPreprocessor.load_pkl_data(enc_path)
+            self.encoder = MLPreprocessor.load_pkl(enc_path)
         else:
             self.encoder = LabelEncoder()
 
@@ -97,11 +96,11 @@ class MLPreprocessor:
         gdown.download(file_id, output=output)
 
     @staticmethod
-    def save_data_as_pkl(data, path):
+    def save_pkl(data, path):
         """
         Save data to given path into pickle format
         """
-        with open(path, "wb", encoding="utf-8") as f:
+        with open(path, "wb") as f:
             pickle.dump(data, f)
 
     @staticmethod
@@ -112,15 +111,23 @@ class MLPreprocessor:
         df.to_csv(file_path, index=index)
 
     @staticmethod
-    def load_pkl_data(path):
+    def save_json(data, path, indent):
+        """
+        Save data to given path into json format
+        """
+        with open(path, 'w', encoding="utf-8") as file:
+            json.dump(data, file, indent) 
+
+    @staticmethod
+    def load_pkl(path):
         """
         Load pickle data from given path
         """
-        with open(path, "rb", encoding="utf-8") as file:
+        with open(path, "rb") as file:
             return pickle.load(file)
 
     @staticmethod
-    def load_csv_data(path):
+    def load_csv(path):
         """
         Load csv data from given path
         """
@@ -128,10 +135,19 @@ class MLPreprocessor:
         return data
 
     @staticmethod
-    def load_txt_data(path):
+    def load_txt(path):
         """
         Load txt data from given path
         """
         with open(path, "r", encoding="utf-8") as file:
             data = file.read()
+        return data
+
+    @staticmethod 
+    def load_json(path):
+        """
+        Load json data from given path 
+        """
+        with open(path, 'r', encoding="utf-8") as file:
+            data = json.load(file)
         return data
