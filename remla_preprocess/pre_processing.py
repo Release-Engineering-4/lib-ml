@@ -15,6 +15,7 @@ class MLPreprocessor:
     """
     Class for preprocessing data for ML model
     """
+
     def __init__(self, seq_len=200, tok_path=None, enc_path=None):
         self.sequence_length = seq_len
         if tok_path:
@@ -115,8 +116,8 @@ class MLPreprocessor:
         """
         Save data to given path into json format
         """
-        with open(path, 'w', encoding="utf-8") as file:
-            json.dump(data, file, indent) 
+        with open(path, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=indent)
 
     @staticmethod
     def load_pkl(path):
@@ -143,11 +144,11 @@ class MLPreprocessor:
             data = file.read()
         return data
 
-    @staticmethod 
+    @staticmethod
     def load_json(path):
         """
-        Load json data from given path 
+        Load json data from given path
         """
-        with open(path, 'r', encoding="utf-8") as file:
+        with open(path, "r", encoding="utf-8") as file:
             data = json.load(file)
         return data
