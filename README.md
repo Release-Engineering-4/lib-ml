@@ -15,7 +15,7 @@ This Python library is designed for preprocessing text data in machine learning.
 Install the library from PyPI using: 
 
 ```bash
-pip install remla-preprocessing 
+pip install remla-preprocess 
 ```
 
 ## Usage 
