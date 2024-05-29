@@ -31,10 +31,13 @@ jobs:
         run: poetry install
 
       - name: Lint with pylint
-        run: poetry run pylint $(git ls-files '*.py')
+        run: poetry run pylint $(git ls-files '*.py') remla_preprocess/ test/
 
       - name: Lint with flake8
         run: poetry run flake8 .
+
+      - name: Run tests
+        run: poetry run pytest
 
   publish:
     name: Build and publish library
