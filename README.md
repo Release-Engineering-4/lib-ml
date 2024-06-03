@@ -12,7 +12,7 @@ This Python library is designed for preprocessing text data in machine learning.
 
 # Installation 
 
-Install the library from PyPI using: 
+Install the library (latest version) from PyPI using: 
 
 ```bash
 pip install remla-preprocess 
@@ -30,6 +30,32 @@ preprocessor = MLPreprocessor()
 
 # Now you can use the functions of the MLPreprocessor class
 preprocessor.tokenize_pad_encode_data(train_data, validation_data, test_data)
+```
+
+## Testing 
+
+To run the tests for the pre-processing library use:
+
+```bash
+pytest
+```
+
+To run the tests with coverage for the pre-processing library use:
+
+```bash
+coverage run -m pytest
+```
+
+To generate the coverage report use:
+
+```bash
+coverage report -m
+```
+
+To generate the html of the coverage report use:
+
+```bash
+coverage html
 ```
 
 ## Support 
