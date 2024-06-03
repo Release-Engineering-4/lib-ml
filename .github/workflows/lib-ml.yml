@@ -36,8 +36,20 @@ jobs:
       - name: Lint with flake8
         run: poetry run flake8 .
 
-      - name: Run tests
-        run: poetry run pytest
+      - name: Run tests with coverage
+        run: |
+          poetry run coverage run -m pytest
+          poetry run coverage report -m
+          poetry run coverage html
+
+      - name: Check coverage threshold
+        run: poetry run coverage report --fail-under=100
+      
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: htmlcov/
 
   publish:
     name: Build and publish library

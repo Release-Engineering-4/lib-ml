@@ -4,7 +4,6 @@ Data preprocessing for ML model
 
 import json
 import pickle
-import gdown
 import pandas as pd
 from tensorflow.keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
@@ -18,16 +17,24 @@ class MLPreprocessor:
 
     def __init__(self, seq_len=200, tok_path=None, enc_path=None):
         self.sequence_length = seq_len
+        self.tokenizer = self.load_tokenizer(tok_path)
+        self.encoder = self.load_encoder(enc_path)
+
+    def load_tokenizer(self, tok_path):
+        """
+        Load custom tokenizer
+        """
         if tok_path:
-            self.tokenizer = MLPreprocessor.load_pkl(tok_path)
-        else:
-            self.tokenizer = Tokenizer(lower=True,
-                                       char_level=True,
-                                       oov_token="-n-")
+            return self.load_pkl(tok_path)
+        return Tokenizer(lower=True, char_level=True, oov_token="-n-")
+
+    def load_encoder(self, enc_path):
+        """
+        Load custom encoder
+        """
         if enc_path:
-            self.encoder = MLPreprocessor.load_pkl(enc_path)
-        else:
-            self.encoder = LabelEncoder()
+            return self.load_pkl(enc_path)
+        return LabelEncoder()
 
     def split_data_content(self, content):
         """
@@ -88,13 +95,6 @@ class MLPreprocessor:
             "label_val": y_val,
             "label_test": y_test,
         }
-
-    @staticmethod
-    def get_data_from_gdrive(file_id, output):
-        """
-        Download data from Google Drive
-        """
-        gdown.download(file_id, output=output)
 
     @staticmethod
     def save_pkl(data, path):

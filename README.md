@@ -1,6 +1,6 @@
 # lib-ml
 
-This Python library is designed for preprocessing text data in machine learning. It provides functions for tokenizing data, padding sequences, and encoding labels, all essential for training ML models. Additionally, it enables data downloading from Google Drive and facilitates storing and loading data in various formats from disk. The library is accessible on PyPI and can be seamlessly integrated into your projects.
+This Python library is designed for preprocessing text data in machine learning. It provides functions for tokenizing data, padding sequences, and encoding labels, all essential for training ML models. Additionally, it facilitates storing and loading data in various formats from disk. The library is accessible on PyPI and can be seamlessly integrated into your projects.
 
 ## Features
 
@@ -8,11 +8,11 @@ This Python library is designed for preprocessing text data in machine learning.
 - **Sequence Padding:** Pad sequences to a consistent fixed length. 
 - **Label Encoding:** Convert labels into numerical format.
 - **Data Storage:** Store data to given path under selected format.
-- **Data Loading:** Load data from disk/Google Drive under selected format.    
+- **Data Loading:** Load data from disk under selected format.    
 
 # Installation 
 
-Install the library from PyPI using: 
+Install the library (latest version) from PyPI using: 
 
 ```bash
 pip install remla-preprocess 
@@ -30,6 +30,32 @@ preprocessor = MLPreprocessor()
 
 # Now you can use the functions of the MLPreprocessor class
 preprocessor.tokenize_pad_encode_data(train_data, validation_data, test_data)
+```
+
+## Testing 
+
+To run the tests for the pre-processing library use:
+
+```bash
+pytest
+```
+
+To run the tests with coverage for the pre-processing library use:
+
+```bash
+coverage run -m pytest
+```
+
+To generate the coverage report use:
+
+```bash
+coverage report -m
+```
+
+To generate the html of the coverage report use:
+
+```bash
+coverage html
 ```
 
 ## Support 
