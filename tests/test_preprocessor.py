@@ -7,17 +7,23 @@ from unittest.mock import patch
 import pytest
 import pandas as pd
 from sklearn.calibration import LabelEncoder
-from remla_preprocess.pre_processing import MLPreprocessor
 from keras.preprocessing.text import Tokenizer
+from remla_preprocess.pre_processing import MLPreprocessor
 
 
 @pytest.fixture
 def dummy_df():
+    """
+    Dummy dataframe data
+    """
     return pd.DataFrame({"col1": [1, 2, 3], "col2": ["a", "b", "c"]})
 
 
 @pytest.fixture
 def dummy_json():
+    """
+    Dummy json data
+    """
     return {"key1": "value1", "key2": "value2"}
 
 
@@ -95,11 +101,17 @@ def encoding_data():
 
 @pytest.fixture
 def dummy_tokenizer_data():
+    """
+    Dummy tokenizer instance
+    """
     return Tokenizer()
 
 
 @pytest.fixture
 def dummy_encoder_data():
+    """
+    Dummy encoder instance
+    """
     return LabelEncoder()
 
 
@@ -180,6 +192,9 @@ def test_load_encoder_with_path(tmp_path, dummy_encoder_data):
 
 
 def test_save_load_pkl(tmp_path, dummy_json):
+    """
+    Test saving/loading data as pkl
+    """
     file_path = tmp_path / "test.pkl"
     MLPreprocessor.save_pkl(dummy_json, file_path)
     assert file_path.exists()
@@ -189,6 +204,9 @@ def test_save_load_pkl(tmp_path, dummy_json):
 
 
 def test_save_load_csv(tmp_path, dummy_df):
+    """
+    Test saving/loading data as csv
+    """
     file_path = tmp_path / "test.csv"
     MLPreprocessor.save_csv(dummy_df, file_path)
     assert file_path.exists()
@@ -198,6 +216,9 @@ def test_save_load_csv(tmp_path, dummy_df):
 
 
 def test_save_load_json(tmp_path, dummy_json):
+    """
+    Test saving/loading data as json
+    """
     file_path = tmp_path / "test.json"
     MLPreprocessor.save_json(dummy_json, file_path, indent=4)
     assert file_path.exists()
@@ -207,6 +228,9 @@ def test_save_load_json(tmp_path, dummy_json):
 
 
 def test_load_txt(tmp_path):
+    """
+    Test saving/loading data as text
+    """
     txt_data = "Sample text data"
     txt_file = tmp_path / "test.txt"
     with open(txt_file, "w", encoding="utf-8") as file:

@@ -21,16 +21,20 @@ class MLPreprocessor:
         self.encoder = self.load_encoder(enc_path)
 
     def load_tokenizer(self, tok_path):
+        """
+        Load custom tokenizer
+        """
         if tok_path:
             return self.load_pkl(tok_path)
-        else:
-            return Tokenizer(lower=True, char_level=True, oov_token="-n-")
+        return Tokenizer(lower=True, char_level=True, oov_token="-n-")
 
     def load_encoder(self, enc_path):
+        """
+        Load custom encoder
+        """
         if enc_path:
             return self.load_pkl(enc_path)
-        else:
-            return LabelEncoder()
+        return LabelEncoder()
 
     def split_data_content(self, content):
         """
